@@ -4,7 +4,9 @@ export default function (_, options, {isClient}) {
     return
   }
 
-  if (isClient) {
+  if (!isClient) return
+
+  if (options.debug || !window.location.host.startsWith('localhost')) {
     (function (f, a, t, h, o, m) {
       a[h] =
         a[h] ||

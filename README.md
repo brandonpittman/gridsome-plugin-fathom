@@ -13,7 +13,8 @@ plugins: [
 {
   use: 'gridsome-plugin-fathom',
     options: {
-      siteId: 'your-site-id'
+      siteId: 'your-site-id',
+      debug: false // set to true for local debugging; defaults to false
     }
   }
 ]
