@@ -6,6 +6,8 @@ export default function (_, options, {isClient}) {
 
   if (!isClient) return
 
+  if (options.host && options.host != window.location.host) return
+
   if (options.debug || !window.location.host.startsWith('localhost')) {
     (function (f, a, t, h, o, m) {
       a[h] =
