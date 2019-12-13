@@ -7,7 +7,7 @@ export default function (Vue, options, {isClient}) {
   if (!isClient) return
 
   // testing helper
-  Vue.prototype.$trackGoal = id => {console.log('Tracking goal:', id)}
+  Vue.prototype.$trackGoal = _ => {}
 
   if (options.host && !options.host != window.location.host) return
 
