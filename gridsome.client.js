@@ -1,14 +1,18 @@
-export default function (_, options, {isClient}) {
+export default function (Vue, options, {isClient}) {
   if (!options.siteId) {
     console.error('siteId not set')
     return
   }
+
+  // dummy function
+  Vue.prototype.$trackGoal = (_) => {}
 
   if (!isClient) return
 
   if (options.host && !options.host != window.location.host) return
 
   if (options.debug || !window.location.host.startsWith('localhost')) {
+    // set up window.fathom
     (function (f, a, t, h, o, m) {
       a[h] =
         a[h] ||
@@ -26,5 +30,12 @@ export default function (_, options, {isClient}) {
 
     window.fathom('set', 'siteId', options.siteId);
     window.fathom('trackPageview');
+
+    // create goal helper function
+    Vue.prototype.$trackGoal = (id) => {
+      if (isClient) {
+        window.fathom('trackGoal', id, 0);
+      }
+    }
   }
 }
