@@ -4,24 +4,33 @@ export default function (Vue, options, {isClient}) {
     return
   }
 
-  if (!isClient) return
+  // no-op fn
+  Vue.prototype.$trackGoal = _ => {}
 
-  Vue.prototype.$trackGoal = _ => {
+  // no-ssr
+  if (!isClient) {
+    console.warn('not client')
+    return
+  }
 
-    if (options.host && (options.host != window.location.host)) return
-
-    if (options.debug || !window.location.host.startsWith('localhost')) {
-      setupFathom();
-
-      Vue.prototype.$trackGoal = trackGoal
+  // make sure we're not debugging
+  if (!options.debug) {
+    if (options.host && (options.host != window.location.host)) {
+      return
     }
+  }
+
+  // set up Fathom
+  if (!window.location.host.startsWith('localhost') || options.debug) {
+    setupFathom(options);
+    Vue.prototype.$trackGoal = trackGoal
   }
 
   function trackGoal(id) {
     window.fathom('trackGoal', id, 0);
   }
 
-  function setupFathom() {
+  function setupFathom(options) {
     (function (f, a, t, h, o, m) {
       a[h] =
         a[h] ||
