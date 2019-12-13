@@ -1,6 +1,6 @@
 {
   "name": "gridsome-plugin-fathom",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A plugin to easily set up Fathom Analytics in your Gridsome project.",
   "main": "gridsome.client.js",
   "scripts": {
