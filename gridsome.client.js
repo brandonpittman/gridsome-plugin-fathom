@@ -4,10 +4,10 @@ export default function (Vue, options, {isClient}) {
     return
   }
 
-  // dummy function
-  Vue.prototype.$trackGoal = (_) => {}
-
   if (!isClient) return
+
+  // testing helper
+  Vue.prototype.$trackGoal = id => {console.log('Tracking goal:', id)}
 
   if (options.host && !options.host != window.location.host) return
 
@@ -39,3 +39,4 @@ export default function (Vue, options, {isClient}) {
     }
   }
 }
+
