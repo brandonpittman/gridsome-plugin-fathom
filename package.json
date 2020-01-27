@@ -3,9 +3,6 @@
   "version": "0.0.14",
   "description": "A plugin to easily set up Fathom Analytics in your Gridsome project.",
   "main": "gridsome.client.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brandonpittman/gridsome-plugin-fathom.git"
