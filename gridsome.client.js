@@ -4,8 +4,10 @@ export default function (Vue, options, {isClient}) {
     return
   }
 
+  if (!options.trackerUrl) options.trackerUrl = '//cdn.usefathom.com/tracker.js'
+
   // no-op fn
-  Vue.prototype.$trackGoal = _ => {}
+  Vue.prototype.$trackGoal = function () {}
 
   // no-ssr
   if (!isClient) {
@@ -44,7 +46,7 @@ export default function (Vue, options, {isClient}) {
       o.src = t;
       o.id = 'fathom-script';
       m.parentNode.insertBefore(o, m);
-    })(document, window, '//cdn.usefathom.com/tracker.js', 'fathom');
+    })(document, window, options.trackerUrl, 'fathom');
 
     window.fathom('set', 'siteId', options.siteId);
     window.fathom('trackPageview');

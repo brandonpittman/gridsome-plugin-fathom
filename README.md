@@ -14,11 +14,17 @@ plugins: [
   use: 'gridsome-plugin-fathom',
     options: {
       siteId: 'your-site-id',
-      host: 'something.com', // declare this to ensure your tracking only occurs on a single host
-      debug: false // set to true for local debugging; defaults to false
+      // usefal if you're running a self-hosted fathom instance
+      trackerUrl: 'your-custom-url',
+      // declare this to ensure your tracking only occurs on a single host
+      host: 'something.com',
+      // set to true for local debugging; defaults to false
+      debug: false
     }
   }
 ]
 ```
 
-In addition to setting up regular tracking, this plugin makes a `$trackGoal(id)` function available. Just pass the goal's ID to the function to track a goal.
+In addition to setting up regular tracking, this plugin makes a
+`$trackGoal(id)` function available. Just pass the goal's ID to the function to
+track a goal.
