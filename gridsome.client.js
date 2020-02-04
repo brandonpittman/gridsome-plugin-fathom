@@ -10,10 +10,7 @@ export default function (Vue, options, {isClient}) {
   Vue.prototype.$trackGoal = function () {}
 
   // no-ssr
-  if (!isClient) {
-    console.warn('not client')
-    return
-  }
+  if (!isClient) return
 
   // make sure we're not debugging
   if (!options.debug) {
